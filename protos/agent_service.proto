@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package mistralPackage;
+
+service AgentService {
+    rpc queryAgent(AgentQueryRequest) returns (QueryResponse);
+    rpc queryModel(ModelQueryRequest) returns (QueryResponse);
+}
+
+message AgentQueryRequest {
+    int32 id = 1;
+    string agentIdentifier = 2;
+    string queryString = 3;
+}
+
+message ModelQueryRequest {
+    int32 id = 1;
+    string modelIdentifier = 2;
+    string queryString = 3;
+    string systemMessage = 4;
+    string role = 5;
+    float temperature = 6;
+}
+
+message QueryResponse {
+    int32 requestId = 1;
+    string response = 2;
+    int32 runTime = 3;
+}
